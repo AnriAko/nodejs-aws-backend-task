@@ -1,0 +1,61 @@
+openapi: 3.0.0
+info:
+  title: Product Service API
+  description: API for managing products
+  version: 1.0.0
+servers:
+  - url: https://your-api-gateway-url.execute-api.region.amazonaws.com/dev
+paths:
+  /product:
+    get:
+      summary: Get all products
+      operationId: getProductsList
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        '500':
+          description: Internal server error
+  /product/{productId}:
+    get:
+      summary: Get product by ID
+      operationId: getProductById
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '404':
+          description: Product not found
+        '500':
+          description: Internal server error
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+      required:
+        - id
+        - title
+        - price
