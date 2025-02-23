@@ -4,7 +4,7 @@ info:
   description: API for managing products
   version: 1.0.0
 servers:
-  - url: https://your-api-gateway-url.execute-api.region.amazonaws.com/dev
+  - url: https://32lxokf9gh.execute-api.eu-west-1.amazonaws.com/dev
 paths:
   /product:
     get:
